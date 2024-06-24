@@ -1,7 +1,7 @@
 const infoPages = [
   {
     page: "1",
-    image: "3-1.png",
+    image: "image/3-1.png",
     comment: `"The first time I used the Samsung Bespoke Jet™,<br>
 I cried. I’m not being sensational; I really did.<br>
 Of course, this vacuum worked great.<br>
@@ -9,7 +9,7 @@ But that’s not all." <a class="link-grey" href="about:blank" target="_blank">R
   },
   {
     page: "2",
-    image: "4-1.png",
+    image: "image/4-1.png",
     comment: `"If you’re an over-cleaner, like myself, you’ll nerd<br> 
 out on all of the functions. If you avoid this chore <br>
 at all costs, you’ll appreciate how simple <br>
@@ -17,7 +17,7 @@ Samsung makes it." <a class="link-grey" href="about:blank" target="_blank">Read 
   },
   {
     page: "3",
-    image: "5-1.png",
+    image: "image/5-1.png",
     comment: `"Both the flor and pet hair attachments are<br> 
 cleverly designed to eliminate the dreaded hair <br>
 wrap. (In other words, you’ll never have to tackle <br>
@@ -26,7 +26,7 @@ hair tangles with a pair of scissors again.)" <br>
   },
   {
     page: "4",
-    image: "6-1.png",
+    image: "image/6-1.png",
     comment: `"When I learned the Samsung Bespoke Vac cleaned itself <br>
 with amazing technology, that’s when I cried. No more <br>
 scraping spider legs and hair out of the crevices with my <br>
@@ -36,7 +36,7 @@ vacuum." <a class="link-grey" href="about:blank" target="_blank">Read more…</a
   },
   {
     page: "5",
-    image: "7-1.png",
+    image: "image/7-1.png",
     comment: `"Because it’s so nice-looking, it can live right in the <br>
 kitchen. No more hauling a vacuum up and down <br>
 the basement stairs on the daily" <a class="link-grey" href="about:blank" target="_blank">Read more…</a>`,
@@ -49,6 +49,13 @@ const itemImage = document.querySelector(".picture");
 const btnNext = document.querySelector(".btn-next");
 const btnPrev = document.querySelector(".btn-prev");
 const btnShop = document.querySelector(".btn-shop");
+const pageSelect = document.querySelector(".page-select-container");
+const frameSecond = document.querySelector(".info-container-second");
+const frameFirst = document.querySelector(".info-container-first");
+const imgFirst = document.querySelector(".img-container");
+const commentFirst = document.querySelector(".comment-container");
+const logoParFirst = document.querySelector(".logo-par-container");
+const btnFirst = document.querySelector(".btn-container");
 
 btnNext.addEventListener("mousedown", function () {
   btnNext.classList.add("grey");
@@ -66,14 +73,14 @@ btnPrev.addEventListener("mouseup", function () {
   btnPrev.classList.remove("grey");
 });
 
-i = 0;
+let i=0;
 btnNext.addEventListener("click", function () {
-  gsap.from(".txt-comment", {
+  gsap.fromTo(".txt-comment", {
     x: "5.21vw",
     opacity: 1,
     duration: 0.7,
     ease: "power2.out",
-  });
+  }, {x: 0});
   gsap.fromTo(".picture", { opacity: 0 }, { duration: 0.7, opacity: 1 });
   i++;
   if (i > infoPages.length - 1) {
@@ -87,12 +94,12 @@ btnNext.addEventListener("click", function () {
 });
 
 btnPrev.addEventListener("click", function () {
-  gsap.from(".txt-comment", {
+  gsap.fromTo(".txt-comment", {
     x: "-5.21vw",
     opacity: 1,
     duration: 0.7,
     ease: "power2.out",
-  });
+  }, {x: 0});
   gsap.fromTo(".picture", { opacity: 0 }, { duration: 0.7, opacity: 1 });
 
   i--;
@@ -104,32 +111,6 @@ btnPrev.addEventListener("click", function () {
   });
   itemComment.innerHTML = infoPages[i].comment;
   itemPage.textContent = infoPages[i].page;
-});
-
-let animationBtnShop = gsap.to(".btn-shop, .btn-next, .btn-prev", {
-  duration: 1.2,
-  scale: 1.07,
-  ease: "power3.out",
-  yoyo: true,
-  repeat: -1,
-});
-
-btnShop.addEventListener("mouseover", function () {
-  animationBtnShop.progress(0).kill();
-});
-
-let animationBtnNPScale = gsap.to(".btn-next, .btn-prev", {
-  duration: 1.2,
-  scale: 1.4,
-  ease: "power3.out",
-  yoyo: true,
-  repeat: -1,
-});
-
-btnNext.addEventListener("click", function () {
-  if (animationBtnNPScale) {
-    animationBtnNPScale.progress(0).kill();
-  }
 });
 
 let animationFirstPageLogo = gsap.timeline();
@@ -163,6 +144,7 @@ gsap.from(".par-first", {
   duration: 0.5,
   ease: "power2.out",
 });
+
 gsap.from(".par-second", {
   x: "-5.2vw",
   delay: 1.2,
@@ -170,6 +152,7 @@ gsap.from(".par-second", {
   duration: 0.5,
   ease: "power2.out",
 });
+
 gsap.from(".par-third", {
   x: "-5.2vw",
   delay: 1.4,
@@ -185,56 +168,12 @@ gsap.to(".par-first, .par-second, .par-third", {
   ease: "power2.out",
 });
 
-const frameSecond = document.querySelector(".info-container-second");
-const frameFirst = document.querySelector(".info-container-first");
-const imgFirst = document.querySelector(".img-container");
-const pageSelectFirst = document.querySelector(".page-select-container-first");
-const commentFirst = document.querySelector(".comment-container");
-const logoParFirst = document.querySelector(".logo-par-container");
-const btnFirst = document.querySelector(".btn-container");
-
 gsap.to(frameFirst, {
   delay: 3,
   duration: 1,
   opacity: 0,
   onStart: function () {
     frameFirst.style.display = "none";
-  },
-});
-
-gsap.to(btnFirst, {
-  delay: 5,
-  duration: 5,
-  opacity: 1,
-  onStart: function () {
-    btnFirst.style.display = "block";
-  },
-});
-
-gsap.to(pageSelectFirst, {
-  delay: 5,
-  duration: 5,
-  opacity: 1,
-  onStart: function () {
-    pageSelectFirst.style.display = "block";
-  },
-});
-
-gsap.to(commentFirst, {
-  delay: 5,
-  duration: 5,
-  opacity: 1,
-  onStart: function () {
-    commentFirst.style.display = "block";
-  },
-});
-
-gsap.to(logoParFirst, {
-  delay: 5,
-  duration: 5,
-  opacity: 1,
-  onStart: function () {
-    logoParFirst.style.display = "block";
   },
 });
 
@@ -247,10 +186,34 @@ gsap.from(imgFirst, {
   x: "-3.2vw",
   ease: "power3.out",
   yoyo: true,
-  onStart: function () {
-    imgFirst.style.display = "block";
-  },
+  onStart: function () {frameSecond.style.display = "block";},
   onComplete: function () {},
+});
+
+let animationBtnShop = gsap.to(".btn-shop, .btn-next, .btn-prev", {
+  duration: 1.2,
+  scale: 1.07,
+  ease: "power3.out",
+  yoyo: true,
+  repeat: -1,
+});
+
+btnShop.addEventListener("mouseover", function () {
+  animationBtnShop.progress(0).kill();
+});
+
+let animationBtnNPScale = gsap.to(".btn-next, .btn-prev", {
+  duration: 1.2,
+  scale: 1.4,
+  ease: "power3.out",
+  yoyo: true,
+  repeat: -1,
+});
+
+btnNext.addEventListener("click", function () {
+  if (animationBtnNPScale) {
+    animationBtnNPScale.progress(0).kill();
+  }
 });
 
 let animationBtnNAutoClick = gsap.to(btnNext, {
@@ -269,7 +232,7 @@ let animationBtnNAutoClick = gsap.to(btnNext, {
     });
   },
   onInterrupt: function () {
-    btnNext.click();
+    btnNext.click();           
     btnNext.classList.remove("grey");
   },
 });

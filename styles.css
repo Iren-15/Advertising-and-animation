@@ -1,15 +1,15 @@
 @font-face {
   font-family: 'Proxima Nova Regular';
-  src: url('ProximaNova-Regular.eot');
-  src: url('ProximaNova-Regular.eot?#iefix') format('embedded-opentype'),
-    url('ProximaNova-Regular.woff') format('woff'),
-    url('ProximaNova-Regular.ttf') format('truetype');
+  src: url('fonts/ProximaNova-Regular.eot');
+  src: url('fonts/ProximaNova-Regular.eot?#iefix') format('embedded-opentype'),
+    url('fonts/ProximaNova-Regular.woff') format('woff'),
+    url('fonts/ProximaNova-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 body {
-  background-image: url(background.png);
+  background-image: url(image/background.png);
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
@@ -94,17 +94,8 @@ p {
 }
 
 /* second page*/
-.info-container-second,
-.logo-par-container,
-.container .comment-container,
-.page-select-container,
-.btn-container,
-.img-container {
-  display: block;
-  opacity: 1;
-}
-
 .info-container-second {
+  display: none;
   width: fit-content;
   overflow: hidden;
   background-color: #fff;
@@ -164,7 +155,7 @@ p {
 .comment-container {
   height: 240px;
   display: flex;
-  align-content: center;
+  align-items: center;
   width: fit-content;
   overflow: hidden;
 }
